@@ -9,7 +9,7 @@ public class Repositorio {
     public static void main(String[] args) {
 
         // Creamos una instancia de ClienteListRepositorio
-        CrudRepositorio repo = new ClienteListRepositorio();
+        OrdenablePaginableContableCrudRepositorio repo = new ClienteListRepositorio();
 
         // Insertamos nuevos registros.
         repo.crear(new Cliente("Úrsula", "Mendez"));
@@ -32,8 +32,8 @@ public class Repositorio {
         // Separador
         System.out.println("Clientes paginados");
 
-        // Paginamos para obtener un subconjunto de clientes. Para eso, debemos hacer un cast del tipo PaginableRepositorio al repo.
-        List<Cliente> paginable =  ((PaginableRepositorio)repo).listar(1,3); // El 1 se incluye, el 3 no se incluye.
+        // Paginamos para obtener un subconjunto de clientes.
+        List<Cliente> paginable =  repo.listar(1,3); // El 1 se incluye, el 3 no se incluye.
 
         // Iteramos la lista de clientes paginados.
         paginable.forEach(System.out::println);
@@ -45,7 +45,7 @@ public class Repositorio {
         System.out.println("Clientes ordenados por nombre ascendente");
 
         // Orden ascendente por nombre
-        List<Cliente> ordenAscNom = ((OrdenableRepositorio)repo).listar("nombre", Direccion.ASC);
+        List<Cliente> ordenAscNom = repo.listar("nombre", Direccion.ASC);
 
         // Iteramos la lista de clientes ordenados por nombre de manera ascendente.
         ordenAscNom.forEach(System.out::println);
@@ -57,7 +57,7 @@ public class Repositorio {
         System.out.println("Clientes ordenados por apellido ascendente");
 
         // Orden ascendente por apellido
-        List<Cliente> ordenAscApe = ((OrdenableRepositorio)repo).listar("apellido", Direccion.ASC);
+        List<Cliente> ordenAscApe = repo.listar("apellido", Direccion.ASC);
 
         // Iteramos la lista de clientes ordenados por apellido de manera ascendente.
         ordenAscApe.forEach(System.out::println);
@@ -69,7 +69,7 @@ public class Repositorio {
         System.out.println("Clientes ordenados por id descendiente");
 
         // Orden ascendente por id
-        List<Cliente> ordenDescId = ((OrdenableRepositorio)repo).listar("id", Direccion.DESC);
+        List<Cliente> ordenDescId = repo.listar("id", Direccion.DESC);
 
         // Iteramos la lista de clientes ordenados por id de manera descendiente.
         ordenDescId.forEach(System.out::println);
@@ -81,7 +81,7 @@ public class Repositorio {
         System.out.println("Clientes ordenados por nombre descendiente");
 
         // Orden descendiente por nombre
-        List<Cliente> ordenDescNom = ((OrdenableRepositorio)repo).listar("nombre", Direccion.DESC);
+        List<Cliente> ordenDescNom = repo.listar("nombre", Direccion.DESC);
 
         // Iteramos la lista de clientes ordenados por nombre de manera descendiente.
         ordenDescNom.forEach(System.out::println);
@@ -93,7 +93,7 @@ public class Repositorio {
         System.out.println("Clientes ordenados por apellido descendiente");
 
         // Orden descendiente por apellido
-        List<Cliente> ordenDescApe = ((OrdenableRepositorio)repo).listar("apellido", Direccion.DESC);
+        List<Cliente> ordenDescApe = repo.listar("apellido", Direccion.DESC);
 
         // Iteramos la lista de clientes ordenados por apellido de manera descendiente.
         ordenDescApe.forEach(System.out::println);
@@ -105,7 +105,7 @@ public class Repositorio {
         System.out.println("Clientes ordenados por id ascendente");
 
         // Orden descendiente por id
-        List<Cliente> ordenAscId = ((OrdenableRepositorio)repo).listar("id", Direccion.ASC);
+        List<Cliente> ordenAscId = repo.listar("id", Direccion.ASC);
 
         // Iteramos la lista de clientes ordenados por apellido de manera ascendente.
         ordenAscId.forEach(System.out::println);
@@ -140,6 +140,16 @@ public class Repositorio {
 
         // Iteramos la lista de clientes.
         repo.listar().forEach(System.out::println);
+
+        // Salto de línea
+        System.out.println();
+
+        // Separador
+        System.out.println("Total de clientes registrados");
+
+        // Mostramos la cantidad de clientes registrados.
+        System.out.println(repo.total());
+
 
     }
 }

@@ -3,10 +3,9 @@ package com.damianarp.poointerfaces.repositorio;
 import com.damianarp.poointerfaces.modelo.Cliente;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-public class ClienteListRepositorio implements CrudRepositorio, OrdenableRepositorio, PaginableRepositorio {
+public class ClienteListRepositorio implements OrdenablePaginableContableCrudRepositorio {
 
     private List<Cliente> dataSource; // Contenedor de los datos donde se van a almacenar los clientes.
 
@@ -96,4 +95,8 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
         return resultado;
     }
 
+    @Override
+    public int total() {
+        return this.dataSource.size();
+    }
 }

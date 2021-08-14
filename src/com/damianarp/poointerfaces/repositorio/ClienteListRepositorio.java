@@ -24,9 +24,9 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
         Cliente resultado = null; // Inicializamos el resultado de la búsqueda del id como nulo por defecto.
         // Iteramos la lista de clientes para obtener el id.
         for(Cliente cli : this.dataSource) {
-            // Si el id del cliente de la lista es igual al id introducido como parámetro en el método,
+            // Si el id del cliente de la lista no es nulo y es igual al id introducido como parámetro en el método,
             // significa que el resultado es igual al cli, hacemos un break para salirnos del bucle y retornamos el resultado.
-            if(cli.getId().equals(id)){
+            if(cli.getId() != null && cli.getId().equals(id)){
                 resultado = cli;
                 break;
             }

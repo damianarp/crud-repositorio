@@ -56,40 +56,44 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public List<Cliente> listar(String campo, Direccion dir) {
+        List<Cliente> listaOrdenada = new ArrayList<>(this.dataSource); // Cremoa una nueva lista a partir del dataSource para no modificar el dataSource original.
         // Ordenamos la lista, mediante la implementación lambda de la interface funcional Comparator.
-        dataSource.sort((a, b) -> { // a y b son del tipo Cliente.
+        listaOrdenada.sort((a, b) -> { // a y b son del tipo Cliente
+
                 // Ordenamos según la dirección.
                 int resultado = 0; // Inicializamos el resultado en 0.
                 // ORDEN ASCENDENTE
                 if (dir == Direccion.ASC) {
-                    // Usamos un switch para ordenar según id, nombre o apellido.
-                    switch (campo) {
-                        case "id" ->
-                                resultado = a.getId().compareTo(b.getId());
-                        case "nombre" ->
-                                resultado = a.getNombre().compareTo(b.getNombre());
-                        case "apellido" ->
-                                resultado = a.getApellido().compareTo(b.getApellido());
-                    }
-                // ORDEN DESCENDENTE
+                    resultado = ordenar(campo, a, b);
+                    // ORDEN DESCENDENTE
                 } else if (dir == Direccion.DESC) {
-                    switch (campo) {
-                        case "id" ->
-                                resultado = b.getId().compareTo(a.getId());
-                        case "nombre" ->
-                                resultado = b.getNombre().compareTo(a.getNombre());
-                        case "apellido" ->
-                                resultado = b.getApellido().compareTo(a.getApellido());
-                    }
+                    resultado = ordenar(campo, b, a);
                 }
                 return resultado;
             });
         // Retorna la lista ordenada.
-        return dataSource;
+        return listaOrdenada;
     }
 
     @Override
     public List<Cliente> listar(int desde, int hasta) {
         return dataSource.subList(desde,hasta);
     }
+
+    // Método para ordenar los clientes
+    public static int ordenar(String campo, Cliente a, Cliente b) {
+        // Ordenamos según la dirección.
+        int resultado = 0; // Inicializamos el resultado en 0.
+        // Usamos un switch para ordenar según id, nombre o apellido.
+        switch (campo) {
+            case "id" ->
+                    resultado = a.getId().compareTo(b.getId());
+            case "nombre" ->
+                    resultado = a.getNombre().compareTo(b.getNombre());
+            case "apellido" ->
+                    resultado = a.getApellido().compareTo(b.getApellido());
+        }
+        return resultado;
+    }
+
 }

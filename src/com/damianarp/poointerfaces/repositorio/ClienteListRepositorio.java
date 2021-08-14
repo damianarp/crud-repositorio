@@ -3,6 +3,7 @@ package com.damianarp.poointerfaces.repositorio;
 import com.damianarp.poointerfaces.modelo.Cliente;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ClienteListRepositorio implements CrudRepositorio, OrdenableRepositorio, PaginableRepositorio {
@@ -55,11 +56,40 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public List<Cliente> listar(String campo, Direccion dir) {
-        return null;
+        // Ordenamos la lista, mediante la implementación lambda de la interface funcional Comparator.
+        dataSource.sort((a, b) -> { // a y b son del tipo Cliente.
+                // Ordenamos según la dirección.
+                int resultado = 0; // Inicializamos el resultado en 0.
+                // ORDEN ASCENDENTE
+                if (dir == Direccion.ASC) {
+                    // Usamos un switch para ordenar según id, nombre o apellido.
+                    switch (campo) {
+                        case "id" ->
+                                resultado = a.getId().compareTo(b.getId());
+                        case "nombre" ->
+                                resultado = a.getNombre().compareTo(b.getNombre());
+                        case "apellido" ->
+                                resultado = a.getApellido().compareTo(b.getApellido());
+                    }
+                // ORDEN DESCENDENTE
+                } else if (dir == Direccion.DESC) {
+                    switch (campo) {
+                        case "id" ->
+                                resultado = b.getId().compareTo(a.getId());
+                        case "nombre" ->
+                                resultado = b.getNombre().compareTo(a.getNombre());
+                        case "apellido" ->
+                                resultado = b.getApellido().compareTo(a.getApellido());
+                    }
+                }
+                return resultado;
+            });
+        // Retorna la lista ordenada.
+        return dataSource;
     }
 
     @Override
     public List<Cliente> listar(int desde, int hasta) {
-        return null;
+        return dataSource.subList(desde,hasta);
     }
 }

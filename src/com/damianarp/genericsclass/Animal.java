@@ -1,10 +1,10 @@
 package com.damianarp.genericsclass;
 
-public class Animales {
+public class Animal {
     private String nombre;
     private String tipo;
 
-    public Animales(String nombre, String tipo) {
+    public Animal(String nombre, String tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
     }

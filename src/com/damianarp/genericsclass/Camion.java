@@ -1,14 +1,12 @@
 package com.damianarp.genericsclass;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 // Clase Camión con parámetro genérico que implementa la interface Iterable también con parámetros genéricos.
 public class Camion<T> implements Iterable<T> {
 
-    private List<T> objetos; // Lista de objetos genéricos.
-    private int max; // Máximo de elementos a transportar.
+    private final List<T> objetos; // Lista de objetos genéricos.
+    private final int max; // Máximo de elementos a transportar.
 
     public Camion(int max) {
         this.max = max;

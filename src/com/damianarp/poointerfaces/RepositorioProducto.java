@@ -1,10 +1,8 @@
 package com.damianarp.poointerfaces;
 
-import com.damianarp.poointerfaces.modelo.Cliente;
 import com.damianarp.poointerfaces.modelo.Producto;
 import com.damianarp.poointerfaces.repositorio.Direccion;
 import com.damianarp.poointerfaces.repositorio.OrdenablePaginableContableCrudRepositorio;
-import com.damianarp.poointerfaces.repositorio.lista.ClienteListaRepositorio;
 import com.damianarp.poointerfaces.repositorio.lista.ProductoListaRepositorio;
 
 import java.util.List;

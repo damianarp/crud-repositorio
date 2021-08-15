@@ -1,12 +1,11 @@
 package com.damianarp.poointerfaces.repositorio.lista;
 
-import com.damianarp.poointerfaces.modelo.Cliente;
+
 import com.damianarp.poointerfaces.modelo.Producto;
 import com.damianarp.poointerfaces.repositorio.AbstractaListaRepositorio;
 import com.damianarp.poointerfaces.repositorio.Direccion;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 // Clase ProductoListaRepositorio que hereda de la clase abstracta AbstractaListaRepositorio con parámetro del tipo Producto.
 public class ProductoListaRepositorio extends AbstractaListaRepositorio<Producto> {

@@ -1,7 +1,5 @@
 package com.damianarp.poointerfaces.modelo;
 
-import java.util.Objects;
-
 // Clase Cliente que hereda de BaseEntidad.
 public class Cliente extends BaseEntidad {
 

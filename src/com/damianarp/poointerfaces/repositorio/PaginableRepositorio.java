@@ -1,11 +1,10 @@
 package com.damianarp.poointerfaces.repositorio;
 
-import com.damianarp.poointerfaces.modelo.Cliente;
-
 import java.util.List;
 
-public interface PaginableRepositorio {
+// Interface PaginableRepositorio con parámetro genérico T.
+public interface PaginableRepositorio<T> {
 
-    // Método para paginar la lista de clientes.
-    List<Cliente> listar(int desde, int hasta);
+    // Método para paginar la lista de elementos.
+    List<T> listar(int desde, int hasta);
 }

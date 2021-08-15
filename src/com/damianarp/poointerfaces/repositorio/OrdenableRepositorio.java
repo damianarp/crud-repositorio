@@ -1,11 +1,10 @@
 package com.damianarp.poointerfaces.repositorio;
 
-import com.damianarp.poointerfaces.modelo.Cliente;
-
 import java.util.List;
 
-public interface OrdenableRepositorio {
+// Interface OrdenableRepositorio con parámetro genérico T.
+public interface OrdenableRepositorio<T> {
 
-    // Método para ordenar la lista de clientes a través de un campo y una dirección.
-    List<Cliente> listar(String campo, Direccion dir);
+    // Método para ordenar la lista de elementos a través de un campo y una dirección.
+    List<T> listar(String campo, Direccion dir);
 }

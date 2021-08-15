@@ -2,21 +2,10 @@ package com.damianarp.poointerfaces.repositorio;
 
 import com.damianarp.poointerfaces.modelo.Cliente;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class ClienteListRepositorio implements OrdenablePaginableContableCrudRepositorio {
-
-    private List<Cliente> dataSource; // Contenedor de los datos donde se van a almacenar los clientes.
-
-    public ClienteListRepositorio() {
-        this.dataSource = new ArrayList<>(); // Inicializamos la lista en el constructor vacío.
-    }
-
-    @Override
-    public List<Cliente> listar() {
-        return dataSource;
-    }
+// Clase ClienteListRepositorio que hereda de la clase abstracta AbstractaListaRepositorio con parámetro del tipo Cliente.
+public class ClienteListaRepositorio extends AbstractaListaRepositorio<Cliente> {
 
     @Override
     public Cliente obtenerPorId(Integer id) {
@@ -34,23 +23,12 @@ public class ClienteListRepositorio implements OrdenablePaginableContableCrudRep
     }
 
     @Override
-    public void crear(Cliente cliente) {
-        this.dataSource.add(cliente);
-    }
-
-    @Override
     public void editar(Cliente cliente) {
         // Primero debemos seleccionar al cliente, lo buscamos con el método obtenerPorId().
         Cliente cli = this.obtenerPorId(cliente.getId());
         // Luego modificamos los datos con el cliente que recibimos por argumento.
         cli.setNombre(cliente.getNombre());
         cli.setApellido(cliente.getApellido());
-    }
-
-    @Override
-    public void eliminar(Integer id) {
-        // Al método remove() aplicado a la lista, le pasamos como argumento el cliente (id obtenido con el método obtenerPorId), para eliminar el registro.
-        this.dataSource.remove(this.obtenerPorId(id));
     }
 
     @Override
@@ -74,11 +52,6 @@ public class ClienteListRepositorio implements OrdenablePaginableContableCrudRep
         return listaOrdenada;
     }
 
-    @Override
-    public List<Cliente> listar(int desde, int hasta) {
-        return dataSource.subList(desde,hasta);
-    }
-
     // Método para ordenar los clientes
     public static int ordenar(String campo, Cliente a, Cliente b) {
         // Ordenamos según la dirección.
@@ -93,10 +66,5 @@ public class ClienteListRepositorio implements OrdenablePaginableContableCrudRep
                     resultado = a.getApellido().compareTo(b.getApellido());
         }
         return resultado;
-    }
-
-    @Override
-    public int total() {
-        return this.dataSource.size();
     }
 }

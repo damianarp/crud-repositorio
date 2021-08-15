@@ -8,8 +8,8 @@ import java.util.List;
 public class Repositorio {
     public static void main(String[] args) {
 
-        // Creamos una instancia de ClienteListRepositorio
-        OrdenablePaginableContableCrudRepositorio repo = new ClienteListRepositorio();
+        // Creamos una instancia de ClienteListaRepositorio por medio de la interface genérica OrdenablePaginableContableCrudRepositorio y pasamos el tipo de dato Cliente.
+        OrdenablePaginableContableCrudRepositorio<Cliente> repo = new ClienteListaRepositorio();
 
         // Insertamos nuevos registros.
         repo.crear(new Cliente("Úrsula", "Mendez"));

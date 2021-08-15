@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Camion implements Iterable {
+// Clase Camión con parámetro genérico que implementa la interface Iterable también con parámetros genéricos.
+public class Camion<T> implements Iterable<T> {
 
-    private List objetos;
+    private List<T> objetos; // Lista de objetos genéricos.
     private int max; // Máximo de elementos a transportar.
 
     public Camion(int max) {
         this.max = max;
-        this.objetos = new ArrayList(); // Inicializamos la lista de objetos en el constructor.
+        this.objetos = new ArrayList<>(); // Inicializamos la lista de objetos en el constructor.
     }
 
-    // Método para agregar objetos. Le pasamos un objeto genérico del tipo Object.
+    // Método para agregar objetos. Le pasamos un objeto genérico del tipo T.
     // Validamos el máximo de objetos.
-    public void add(Object objeto) {
+    public void add(T objeto) {
         if (this.objetos.size() <= max) {
             this.objetos.add(objeto);
         } else {
@@ -26,7 +27,7 @@ public class Camion implements Iterable {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return this.objetos.iterator();
     }
 }

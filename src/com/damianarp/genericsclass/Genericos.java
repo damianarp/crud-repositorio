@@ -3,8 +3,8 @@ package com.damianarp.genericsclass;
 public class Genericos {
     public static void main(String[] args) {
 
-        // Creamos la instancia de Camion para transportar caballos.
-        Camion transporteCaballos = new Camion(5);
+        // Creamos la instancia de Camion para transportar caballos y le indicamos el tipo de dato que va a contener.
+        Camion<Animal> transporteCaballos = new Camion<>(5);
 
         // Agregamos los caballos.
         transporteCaballos.add(new Animal("Corazón Valiente", "Caballo"));
@@ -16,18 +16,14 @@ public class Genericos {
         // Separador
         System.out.println("Transporte de Caballos");
 
-        // Iteramos el objeto Camion (gracias a la interface Iterable) para mostrar el nombre y tipo de animal.
-        // Como el método add() agrega un objeto del tipo Object, debemos realizar un cast al tipo Animal.
-        for (Object o : transporteCaballos) {
-            Animal a = (Animal) o;
-            System.out.println(a.getNombre() + " - " + a.getTipo());
-        }
+        // Iteramos con el método genérico imprimirCamion() para mostrar el nombre y tipo de animal.
+        imprimirCamion(transporteCaballos);
 
         // Salto de línea
         System.out.println();
 
-        // Creamos la instancia de Camion para transportar maquinaria.
-        Camion transporteMaquinaria = new Camion(3);
+        // Creamos la instancia de Camion para transportar maquinaria y le indicamos el tipo de dato que va a contener.
+        Camion<Maquinaria> transporteMaquinaria = new Camion<>(3);
 
         // Agregamos la maquinaria.
         transporteMaquinaria.add(new Maquinaria("Bulldozer"));
@@ -37,18 +33,14 @@ public class Genericos {
         // Separador
         System.out.println("Transporte de Maquinaria");
 
-        // Iteramos el objeto Camion (gracias a la interface Iterable) para mostrar el tipo de maquinaria.
-        // Como el método add() agrega un objeto del tipo Object, debemos realizar un cast al tipo Maquinaria.
-        for (Object o : transporteMaquinaria) {
-            Maquinaria m = (Maquinaria) o;
-            System.out.println(m.getTipo());
-        }
+        // Iteramos con el método genérico imprimirCamion() para mostrar el tipo de maquinaria.
+        imprimirCamion(transporteMaquinaria);
 
         // Salto de línea
         System.out.println();
 
-        // Creamos la instancia de Camion para transportar automóviles.
-        Camion transporteAutomovil = new Camion(4);
+        // Creamos la instancia de Camion para transportar automóviles y le indicamos el tipo de dato que va a contener.
+        Camion<Automovil> transporteAutomovil = new Camion<>(4);
 
         // Agregamos la maquinaria.
         transporteAutomovil.add(new Automovil("Eco Sport"));
@@ -59,12 +51,22 @@ public class Genericos {
         // Separador
         System.out.println("Transporte de Automóviles");
 
-        // Iteramos el objeto Camion (gracias a la interface Iterable) para mostrar el tipo de Automovil.
-        // Como el método add() agrega un objeto del tipo Object, debemos realizar un cast al tipo Automovil.
-        for (Object o : transporteAutomovil) {
-            Automovil a = (Automovil) o;
-            System.out.println(a.getMarca());
-        }
+        // Iteramos con el método genérico imprimirCamion() para mostrar el tipo de Automovil.
+        imprimirCamion(transporteAutomovil);
+    }
 
+    // Método genérico para imprimir los datos del camión.
+    public static <T> void imprimirCamion(Camion<T> camion) {
+        // Iteramos el objeto Camion (gracias a la interface Iterable) para mostrar los objetos que transporta el camión.
+        for (T c : camion) {
+            // Realizamos el cast al tipo de objeto que transporta el camión con una validación.
+            if (c instanceof Animal) {
+                System.out.println(((Animal)c).getNombre() + " - " + ((Animal)c).getTipo());
+            } else if (c instanceof Maquinaria) {
+                System.out.println(((Maquinaria)c).getTipo());
+            } else if (c instanceof Automovil) {
+                System.out.println(((Automovil)c).getMarca());
+            }
+        }
     }
 }

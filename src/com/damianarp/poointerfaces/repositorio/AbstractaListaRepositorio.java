@@ -1,9 +1,12 @@
 package com.damianarp.poointerfaces.repositorio;
 
+import com.damianarp.poointerfaces.modelo.BaseEntidad;
+
 import java.util.*;
 
-// Clase abstracta ClienteListRepositorio con parámetro genérico T que implementa la interface OrdenablePaginableContableCrudRepositorio con parámetro T.
-public abstract class AbstractaListaRepositorio<T> implements OrdenablePaginableContableCrudRepositorio<T> {
+// Clase abstracta AbstractaListaRepositorio con parámetro genérico T que hereda de BaseEntidad
+// e implementa la interface OrdenablePaginableContableCrudRepositorio con parámetro genérico T.
+public abstract class AbstractaListaRepositorio<T extends BaseEntidad> implements OrdenablePaginableContableCrudRepositorio<T> {
 
     protected List<T> dataSource; // Lista donde se van a almacenar los elementos.
 
@@ -16,20 +19,20 @@ public abstract class AbstractaListaRepositorio<T> implements OrdenablePaginable
         return dataSource;
     }
 
-    /*@Override
-    public Cliente obtenerPorId(Integer id) {
-        Cliente resultado = null; // Inicializamos el resultado de la búsqueda del id como nulo por defecto.
-        // Iteramos la lista de clientes para obtener el id.
-        for(Cliente cli : this.dataSource) {
-            // Si el id del cliente de la lista no es nulo y es igual al id introducido como parámetro en el método,
-            // significa que el resultado es igual al cli, hacemos un break para salirnos del bucle y retornamos el resultado.
-            if(cli.getId() != null && cli.getId().equals(id)){
-                resultado = cli;
+    @Override
+    public T obtenerPorId(Integer id) {
+        T resultado = null; // Inicializamos el resultado de la búsqueda del id como nulo por defecto.
+        // Iteramos la lista de elementos para obtener el id.
+        for(T t : this.dataSource) {
+            // Si el id del elemento de la lista no es nulo y es igual al id introducido como parámetro en el método,
+            // significa que el resultado es igual a 't', hacemos un break para salirnos del bucle y retornamos el resultado.
+            if(t.getId() != null && t.getId().equals(id)){
+                resultado = t;
                 break;
             }
         }
         return resultado;
-    }*/
+    }
 
     @Override
     public void crear(T t) {

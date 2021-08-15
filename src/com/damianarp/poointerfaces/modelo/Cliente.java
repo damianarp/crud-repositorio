@@ -2,28 +2,16 @@ package com.damianarp.poointerfaces.modelo;
 
 import java.util.Objects;
 
-public class Cliente {
-    private Integer id;
+// Clase Cliente que hereda de BaseEntidad.
+public class Cliente extends BaseEntidad {
+
     private String nombre;
     private String apellido;
-    private static int ultimoId; // Sirve para auto-incrementar el id.
-
-    public Cliente() {
-        this.id = ++ultimoId; // Auto-incrementamos el id en el constructor vacío.
-    }
 
     public Cliente(String nombre, String apellido) {
-        this(); // Invoca al constructor vacío.
+        super(); // Invoca al constructor vacío de BaseEntidad.
         this.nombre = nombre;
         this.apellido = apellido;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNombre() {

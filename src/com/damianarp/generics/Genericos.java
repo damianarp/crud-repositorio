@@ -77,6 +77,25 @@ public class Genericos {
 
         // Salto de línea
         System.out.println();
+
+        // Separador
+        System.out.println("Lista de clientes con método imprimirClientes");
+
+        // Imprimimos los clientes con el método imprimirClientes().
+        imprimirClientes(clientes);
+
+        // Salto de línea
+        System.out.println();
+
+        // Imprimimos otra lista de clientes con el método imprimirClientes().
+        imprimirClientes(clientesLista);
+
+        // Salto de línea
+        System.out.println();
+
+        // Imprimimos la lista de clientes Premium con el método imprimirClientes().
+        imprimirClientes(clientesPremiumLista);
+
     }
 
     // Método estático genérico para convertir un arreglo en un tipo List<T>.
@@ -105,4 +124,11 @@ public class Genericos {
         }
         return Arrays.asList(t); // Utilizamos la clase helper Arrays con el método asList() y le pasamos el arreglo c.
     }
+
+    // Método para usar comodines (solo se pueden usar en listas) que imprime clientes,
+    // recibe como parámetro una lista de clientes y cualquier tipo de lista de Cliente, ya sean clientes comunes o Premium.
+    public static void imprimirClientes(List<? extends Cliente> clientes) {
+        clientes.forEach(System.out::println);
+    }
+
 }

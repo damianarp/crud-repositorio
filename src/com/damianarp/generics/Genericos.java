@@ -1,6 +1,7 @@
 package com.damianarp.generics;
 
 import com.damianarp.poointerfaces.modelo.Cliente;
+import com.damianarp.poointerfaces.modelo.ClientePremium;
 
 import java.util.*;
 
@@ -47,6 +48,19 @@ public class Genericos {
         System.out.println();
 
         // Separador
+        System.out.println("Lista de clientes Premium");
+
+        // Creamos una lista de clientes premium para que haga la conversión de arreglo a lista.
+        List<ClientePremium> clientesPremiumLista = fromArrayToList(
+                new ClientePremium[]{new ClientePremium("Pedro", "Aznar")});
+
+        // Luego se imprime la lista de clientes premium.
+        clientesPremiumLista.forEach(System.out::println);
+
+        // Salto de línea
+        System.out.println();
+
+        // Separador
         System.out.println("Lista de clientes");
 
         // Imprimimos la lista de clientes.
@@ -69,16 +83,26 @@ public class Genericos {
     // T hace referencia a un tipo de dato genérico.
     // Pasamos como argumento un arreglo genérico T.
     // Antes del retorno, indicamos el tipo de dato genérico con <T>.
-    public static <T> List<T> fromArrayToList(T[] c) {
-        return Arrays.asList(c); // Utilizamos la clase helper Arrays con el método asList() y le pasamos el arreglo c.
+    public static <T> List<T> fromArrayToList(T[] t) {
+        return Arrays.asList(t); // Utilizamos la clase helper Arrays con el método asList() y le pasamos el arreglo c.
+    }
+
+    // Sobrecargamos el método para que solo acepte parámetros del tipo Number (int, float, etc).
+    public static <T extends Number> List<T> fromArrayToList(T[] t) {
+        return Arrays.asList(t); // Utilizamos la clase helper Arrays con el método asList() y le pasamos el arreglo c.
+    }
+
+    // Sobrecargamos el método para que solo acepte parámetros del tipo Cliente y además implemente la interface comparable.
+    public static <T extends Cliente & Comparable<T>> List<T> fromArrayToList(T[] t) {
+        return Arrays.asList(t); // Utilizamos la clase helper Arrays con el método asList() y le pasamos el arreglo c.
     }
 
     // Sobrecargamos el método con más parámetros genéricos.
-    public static <T, G> List<T> fromArrayToList(T[] c, G[] g) {
+    public static <T, G> List<T> fromArrayToList(T[] t, G[] g) {
         // Iteramos el arreglo g, imprimimos cada elemento del arreglo.
         for (G elemento : g) {
             System.out.println(elemento);
         }
-        return Arrays.asList(c); // Utilizamos la clase helper Arrays con el método asList() y le pasamos el arreglo c.
+        return Arrays.asList(t); // Utilizamos la clase helper Arrays con el método asList() y le pasamos el arreglo c.
     }
 }

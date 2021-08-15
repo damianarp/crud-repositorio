@@ -2,10 +2,11 @@ package com.damianarp.poointerfaces;
 
 import com.damianarp.poointerfaces.modelo.Cliente;
 import com.damianarp.poointerfaces.repositorio.*;
+import com.damianarp.poointerfaces.repositorio.lista.ClienteListaRepositorio;
 
 import java.util.List;
 
-public class Repositorio {
+public class RepositorioCliente {
     public static void main(String[] args) {
 
         // Creamos una instancia de ClienteListaRepositorio por medio de la interface genérica OrdenablePaginableContableCrudRepositorio y pasamos el tipo de dato Cliente.
@@ -107,7 +108,7 @@ public class Repositorio {
         // Orden descendiente por id
         List<Cliente> ordenAscId = repo.listar("id", Direccion.ASC);
 
-        // Iteramos la lista de clientes ordenados por apellido de manera ascendente.
+        // Iteramos la lista de clientes ordenados por id de manera ascendente.
         ordenAscId.forEach(System.out::println);
 
         // Salto de línea
@@ -149,7 +150,5 @@ public class Repositorio {
 
         // Mostramos la cantidad de clientes registrados.
         System.out.println(repo.total());
-
-
     }
 }

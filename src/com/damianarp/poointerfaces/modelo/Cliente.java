@@ -36,15 +36,4 @@ public class Cliente extends BaseEntidad {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'';
     }
-
-    // Método equals para comparar el id que se pasa como parámetro con el de la lista de clientes.
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true; // Si los objetos son iguales, retorna true y se sale.
-        if (o == null || getClass() != o.getClass()) return false; // Si el objeto es nulo, o la clase es distinta a la del objeto, retorna false y se sale.
-        // Si se cumple esto, compara los clientes.
-        Cliente cliente = (Cliente) o;
-        // Se compara el id pasado por parámetro con el del cliente con el método equals().
-        return Objects.equals(id, cliente.id); // Esto es igual a return this.id != null && this.id.equals(cliente.id);
-    }
 }

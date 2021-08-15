@@ -1,6 +1,8 @@
-package com.damianarp.poointerfaces.repositorio;
+package com.damianarp.poointerfaces.repositorio.lista;
 
 import com.damianarp.poointerfaces.modelo.Cliente;
+import com.damianarp.poointerfaces.repositorio.AbstractaListaRepositorio;
+import com.damianarp.poointerfaces.repositorio.Direccion;
 
 import java.util.*;
 
@@ -18,7 +20,7 @@ public class ClienteListaRepositorio extends AbstractaListaRepositorio<Cliente> 
 
     @Override
     public List<Cliente> listar(String campo, Direccion dir) {
-        List<Cliente> listaOrdenada = new ArrayList<>(this.dataSource); // Cremoa una nueva lista a partir del dataSource para no modificar el dataSource original.
+        List<Cliente> listaOrdenada = new ArrayList<>(this.dataSource); // Creamos una nueva lista a partir del dataSource para no modificar el dataSource original.
         // Ordenamos la lista, mediante la implementación lambda de la interface funcional Comparator.
         listaOrdenada.sort((a, b) -> { // a y b son del tipo Cliente
 

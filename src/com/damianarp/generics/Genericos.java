@@ -96,6 +96,32 @@ public class Genericos {
         // Imprimimos la lista de clientes Premium con el método imprimirClientes().
         imprimirClientes(clientesPremiumLista);
 
+        // Salto de línea
+        System.out.println();
+
+        // Separador
+        System.out.println("Máximo de 1, 9, 4 es:");
+
+        // Imprimimos el máximo.
+        System.out.println(maximo(1, 9, 4));
+
+        // Salto de línea
+        System.out.println();
+
+        // Separador
+        System.out.println("Máximo de 3.9, 9.2, 5.4 es:");
+
+        // Imprimimos el máximo.
+        System.out.println(maximo(3.9, 9.2, 5.4));
+
+        // Salto de línea
+        System.out.println();
+
+        // Separador
+        System.out.println("Máximo de \"zanahoria\", \"tomate\", \"batata\" es [según el orden alfabético en la tabla Unicode]:");
+
+        // Imprimimos el máximo.
+        System.out.println(maximo("zanahoria", "tomate", "batata"));
     }
 
     // Método estático genérico para convertir un arreglo en un tipo List<T>.
@@ -129,6 +155,21 @@ public class Genericos {
     // recibe como parámetro una lista de clientes y cualquier tipo de lista de Cliente, ya sean clientes comunes o Premium.
     public static void imprimirClientes(List<? extends Cliente> clientes) {
         clientes.forEach(System.out::println);
+    }
+
+    // Método para calcular el mayor de 3 objetos de cualquier tipo que extienda de la interface Comparable.
+    public static <T extends Comparable<T>> T maximo(T a, T b, T c) {
+        // Comparamos a, b y c y retornamos el mayor.
+        T max = a; // Por defecto, indicamos que 'a' sea el mayor.
+        // Si 'b' es mayor que máximo, entonces 'b' es el máximo.
+        if (b.compareTo(max) > 0) {
+            max = b;
+        }
+        // Si 'c' es mayor que máximo, entonces 'c' es el máximo.
+        if (c.compareTo(max) > 0) {
+            max = c;
+        }
+        return max;
     }
 
 }
